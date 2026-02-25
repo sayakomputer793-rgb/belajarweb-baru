@@ -5,6 +5,7 @@ require_once __DIR__ . '/../../models/Contact.php';
 
 class BlogController extends Controller
 {
+    protected string $layout = 'admin/layouts/main';
     private Blog $blog;
 
     public function __construct()

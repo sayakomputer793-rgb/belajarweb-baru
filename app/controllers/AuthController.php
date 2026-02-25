@@ -4,6 +4,13 @@ require_once __DIR__ . '/../models/User.php';
 
 class AuthController extends Controller
 {
+    protected string $layout = 'admin/layouts/main';
+
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     public function loginForm(): void
     {
         if ($this->isLoggedIn()) {

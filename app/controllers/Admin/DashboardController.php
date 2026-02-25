@@ -6,6 +6,8 @@ require_once __DIR__ . '/../../models/Contact.php';
 
 class DashboardController extends Controller
 {
+    protected string $layout = 'admin/layouts/main';
+
     public function index(): void
     {
         $this->requireLogin();

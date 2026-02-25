@@ -4,6 +4,7 @@ require_once __DIR__ . '/../../models/Contact.php';
 
 class ContactController extends Controller
 {
+    protected string $layout = 'admin/layouts/main';
     private Contact $contact;
 
     public function __construct()

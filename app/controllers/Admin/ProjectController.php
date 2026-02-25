@@ -6,6 +6,7 @@ require_once __DIR__ . '/../../models/Contact.php';
 
 class ProjectController extends Controller
 {
+    protected string $layout = 'admin/layouts/main';
     private Project $project;
     private Category $category;
 

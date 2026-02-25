@@ -4,6 +4,7 @@ require_once __DIR__ . '/../../config/database.php';
 
 class Controller
 {
+    protected string $layout = 'layouts/main';
     protected string $basePath;
     protected array $config;
 
@@ -31,8 +32,12 @@ class Controller
         require $viewFile;
         $content = ob_get_clean();
 
-        // Require the main layout, passing the captured content
-        require __DIR__ . '/../views/layouts/main.php';
+        // Require the layout, passing the captured content
+        $layoutFile = __DIR__ . '/../views/' . $this->layout . '.php';
+        if (!file_exists($layoutFile)) {
+            die("Layout not found: {$this->layout}");
+        }
+        require $layoutFile;
     }
 
     protected function json(mixed $data, int $status = 200): void
@@ -59,6 +64,24 @@ class Controller
         if (!$this->isLoggedIn()) {
             $this->redirect('/admin/login');
         }
+    }
+
+    protected function setFlash(string $type, string $message): void
+    {
+        $_SESSION['flash'] = [
+            'type' => $type,
+            'message' => $message
+        ];
+    }
+
+    protected function getFlash(): ?array
+    {
+        if (isset($_SESSION['flash'])) {
+            $flash = $_SESSION['flash'];
+            unset($_SESSION['flash']);
+            return $flash;
+        }
+        return null;
     }
 
     protected function csrfToken(): string

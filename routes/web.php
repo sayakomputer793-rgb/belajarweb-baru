@@ -57,3 +57,15 @@ $router->post('admin/blogs/delete/{id}', 'Admin/BlogController@delete');
 $router->get('admin/contacts', 'Admin/ContactController@index');
 $router->post('admin/contacts/read/{id}', 'Admin/ContactController@markRead');
 $router->post('admin/contacts/delete/{id}', 'Admin/ContactController@delete');
+
+// Admin Categories
+$router->get('admin/categories', 'Admin/CategoryController@index');
+$router->get('admin/categories/create', 'Admin/CategoryController@create');
+$router->post('admin/categories/store', 'Admin/CategoryController@store');
+$router->get('admin/categories/edit/{id}', 'Admin/CategoryController@edit');
+$router->post('admin/categories/update/{id}', 'Admin/CategoryController@update');
+$router->post('admin/categories/delete/{id}', 'Admin/CategoryController@delete');
+
+// Admin Settings
+$router->get('admin/settings', 'Admin/SettingsController@index');
+$router->post('admin/settings/update', 'Admin/SettingsController@update');
